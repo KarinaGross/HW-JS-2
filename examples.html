@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <form action="#" class="form">
+        <label for="#"><input type="radio" name="propagation-control" value="stopPropagation">Stop propagation</label>
+        <label for="#"><input type="radio" name="propagation-control" value="stopImmediatePropagation">Stop Immediate
+            propagation</label>
+    </form>
+
+    <ul>
+        <li>Первый</li>
+        <li>Второй</li>
+        <li>Третий</li>
+    </ul> -->
+
+
+
+    <!-- <form action="#" class="form">
+        <h2>Форма</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus eum dolore culpa, maiores repudiandae at
+            voluptates maxime. Sed, possimus consequuntur!</p>
+        <input id="checkbox" type="checkbox" class="check">
+        <label for="checkbox">Согласен с условиями</label>
+        <div class="error"></div>
+        <button type="submit">Отправить</button>
+    </form> -->
+
+
+
+    <button>Кликни меня!</button>
+
+
+    <script>
+        // const form = document.querySelector('.form');
+        // const list = document.querySelector('ul');
+        // list.addEventListener('click', function (e) {
+        //     console.log('В первом UL в фазе захвата');
+        //     const propagationControlMethodName = form.elements['propagation-control'].value;
+        //     console.log(propagationControlMethodName);
+        //     if (propagationControlMethodName) {
+        //         e[propagationControlMethodName]();
+        //     }
+        // }.true);
+
+        // list.addEventListener('click', () => {
+        //     console.log('Во втором UL в фазе всплытия');
+        // });
+
+        // Array.from(list.children).forEach((child) => {
+        //     child.addEventListener('click', () => {
+        //         console.log('В каждом LI в фазе всплытия');
+        //     })
+        // })
+
+
+
+        // const inputEl = document.querySelector('.check');
+        // const formEl = document.querySelector('.form');
+        // const errorEl = document.querySelector('.error');
+
+        // inputEl.addEventListener('click', function (e) {
+        //     const target = e.target;
+        //     console.log(target.checked);
+        // });
+
+        // formEl.addEventListener('submit', function (e) {
+        //     if (inputEl.checked) {
+        //         console.log('Молодец');
+        //     } else {
+        //         errorEl.textContent = 'Выбрать согласен с условиями';
+        //         e.preventDefault;
+        //     }
+
+        //     // console.log(inputEl.checked ? 'Молодец' : 'Выбрать чекбокс');
+        // });
+
+
+
+        const eventOptions = { bubbles: true, cancelable: true };
+        const event = new Event('click', eventOptions);
+        event.view = window;
+
+        const mouseEvent = new MouseEvent('click', {
+            ...eventOptions,
+            view: window,
+        });
+
+        document.addEventListener('click', (event) => {
+            console.log(event.isTrusted);
+        })
+
+        const button = document.querySelector('button');
+        button.dispatchEvent(event);
+        button.dispatchEvent(mouseEvent);
+        button.click();
+
+
+        // 1. При изменении значения в input с id="from", значение содержащееся в нем должно моментально отображаться в span. 
+        // То есть при печати в input'е тег span также должен меняться.
+
+        //     <input id="from" type="text">
+        // В инпуте написано: <span></span>
+
+        const formEl = document.querySelector('#from');
+
+        const inputContent = () => {
+            document.querySelector('span').textContent = formEl.value;
+        }
+
+        formEl.addEventListener('input', inputContent);
+
+    </script>
+</body>
+
+</html>
