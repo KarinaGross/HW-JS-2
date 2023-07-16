@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content-box {
+            display: flex;
+            justify-content: flex-start;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .university-info {
+            width: 200px;
+            height: 250px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-box"></div>
+
+    <script src="data.js"></script>
+    <script>
+        const dataSet = JSON.parse(data);
+        console.log(dataSet);
+        dataSet.forEach(el => {
+            console.log(el.web_pages,
+                el.domains,
+                el.country,
+                el.name,
+                el.state_province,
+                el.alpha_two_code);
+        })
+
+        dataSet.forEach(university => {
+            const contentBox = document.querySelector('.content-box');
+
+            const universityEl = document.createElement('div');
+            universityEl.classList.add('university-info');
+            contentBox.appendChild(universityEl);
+
+            const link = document.createElement('a');
+            link.classList.add('web-pages');
+            link.href = university.web_pages;
+            link.textContent = `${university.web_pages}`;
+            universityEl.appendChild(link);
+
+            universityEl.appendChild(document.createElement('br'));
+
+            const domain = document.createElement('a');
+            domain.classList.add('domain');
+            domain.href = university.domains;
+            domain.textContent = `${university.domains}`;
+            universityEl.appendChild(domain);
+
+            const country = document.createElement('p');
+            country.classList.add('country');
+            country.textContent = `${university.country}`;
+            universityEl.appendChild(country);
+
+            const name = document.createElement('p');
+            name.classList.add('name');
+            name.textContent = `${university.name}`;
+            universityEl.appendChild(name);
+
+            const stateProvince = document.createElement('p');
+            stateProvince.classList.add('state_province');
+            stateProvince.textContent = `${university.state_province}`;
+            universityEl.appendChild(stateProvince);
+
+            const alphaTwoCode = document.createElement('p');
+            alphaTwoCode.classList.add('alpha_two_code');
+            alphaTwoCode.textContent = `${university.alpha_two_code}`;
+            universityEl.appendChild(alphaTwoCode);
+        });
+
+
+    </script>
+</body>
+
+</html>
