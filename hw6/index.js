@@ -19,7 +19,7 @@ async function fetchData() {
                     <div class="txt-box">
                         <p class="item-link__title">${item.name}</p>
                         <p class="item-link__text">${item.description}</p>
-                        <p class="item-link__price">${item.price}</p>
+                        <p class="item-link__price">$${item.price}</p>
                     </div>
                 </a>
                 <div class="add-box">
@@ -82,7 +82,7 @@ function addNewProductToCart(productId) {
             <div class="products-box">
                 <a href="../Product/index.html" class="products-box__title">${basket[productId].name}</a>
                 <div class="products-box__text">
-                    <p>Price: <span class="products-box__text_price">${basket[productId].price * basket[productId].count}</span></p>
+                    <p>Price: <span class="products-box__text_price">$${basket[productId].price * basket[productId].count}</span></p>
                     <p>Color: <span class="products-box__text_details">Red</span></p>
                     <p>Size: <span class="products-box__text_details">XL</span></p>
                     <p>Quantity: <input type="number" value="${basket[productId].count}" min="1" max="10"
@@ -113,17 +113,17 @@ function increaseAmountProductInCart(productId) {
 
     const product = basket[productId];
     productInCart.querySelector('.products-box__text_amount').value = product.count;
-    productInCart.querySelector('.products-box__text_price').textContent = product.price * product.count;
+    productInCart.querySelector('.products-box__text_price').textContent = `$${product.price * product.count}`;
 }
 
-// function delProduct(product) {
-//     const deleteBtn = product.querySelectorAll('.delete-button');
-//     deleteBtn.addEventListener('click', () => {
-//         const product = btn.closest('.products');
-//         product.remove();
+cartBox.addEventListener('click', (event) => {
+    if (!event.target.closest('.delete-button')) {
+        return;
+    }
 
-//     })
-// }
+    event.target.closest('.products').remove();
 
-
-
+    if (cartBox.children.length === 0) {
+        document.querySelector('.cart-title').remove();
+    }
+})
