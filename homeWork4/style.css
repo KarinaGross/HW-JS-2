@@ -1,0 +1,23 @@
+.users-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.user {
+    background: #ebe9e9;
+    padding: 10px;
+    height: 250px;
+    width: 200px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.user__delete:hover {
+    fill: gray;
+    cursor: pointer;
+}
